@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dzqd.comondao.dao.UserMapper" >
+
+
+    <resultMap id="userDOMap" type="com.dzqd.comondao.entity.UserDO" >
+        <id column="USER_ID" property="id" jdbcType="INTEGER" />
+        <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+        <result column="USER_CODE" property="userCode" jdbcType="VARCHAR" />
+        <result column="COMPANY" property="company" jdbcType="VARCHAR" />
+        <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+        <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+        <result column="USER_TYPE" property="userType" jdbcType="INTEGER" />
+        <result column="USER_DESC" property="userDesc" jdbcType="VARCHAR" />
+        <result column="CREATOR" property="creator" jdbcType="VARCHAR" />
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="UPDATER" property="updater" jdbcType="VARCHAR" />
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="STATUS" property="status" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        user_name,user_code,company,login_name,password,email,user_type,user_desc,creator,create_time,updater,update_time,status
+    </sql>
+
+
+    <select id="get" resultMap="userDOMap" parameterType="int">
+        select USER_ID,
+        <include refid="Base_Column_List" />
+        from user
+        WHERE
+        USER_ID=#{id}
+    </select>
+
+</mapper>
